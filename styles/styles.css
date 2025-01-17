@@ -1,0 +1,51 @@
+body {
+    width: 300px;
+    font-family: Arial, sans-serif;
+    margin: 24px;
+    text-align: left;
+}
+
+input[type="text"] {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+ul {
+    padding-left: 24px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+footer {
+    text-align: center;
+}
+
+.button--hidden {
+    display: none;
+}
+
+.button--delete {
+    background-color: #f44336;
+}
+
+.message {
+    padding: 12px;
+    display: none;
+    background-color: #cfe4d0;
+    border: 1px solid #4CAF50;
+}
+
+.message--show {
+    display: block;
+}

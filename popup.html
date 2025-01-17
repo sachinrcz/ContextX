@@ -1,37 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Alert Extension</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 10px;
-      text-align: center;
-    }
-    input[type="text"] {
-      width: 80%;
-      padding: 8px;
-      margin-bottom: 10px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-    }
-    button {
-      padding: 10px 20px;
-      background-color: #4CAF50;
-      color: white;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-    button:hover {
-      background-color: #45a049;
-    }
-  </style>
-</head>
-<body></body>
-
-  <script src="js/popup.js"></script>
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="styles/styles.css">
+        <title>Context</title>
+    </head>
+    <body>
+        <h1>Context</h1>
+        <p>Context is an AI powered extension that allows you to add context to what you are reading.</p>
+        <h2>Settings</h2>
+        <label>
+            <span>Open API Key</span>
+            <input type="text" id="openai-api-key" placeholder="Enter your OpenAI API key">
+        </label>
+        <button class="button" id="save-api-key">Save</button>
+        <button class="button button--delete button--hidden" id="delete-api-key">X</button>
+        <h3>How to get an OpenAI API key</h3>
+        <ul>
+            <li>Log in to your OpenAI account.</li>
+            <li>Navigate to the <a href="https://platform.openai.com/settings/organization/api-keys" target="_blank">API section</a> and generate an API key.</li>
+        </ul>
+        <footer>v.1.0.1</footer>
+        <span id="message" class="message">
+            <p class="message__message">{}</p>
+            <button class="message__button">X</button>
+        </span>
+        <script src="js/popup.js"></script>
+    </body>    
 </html>

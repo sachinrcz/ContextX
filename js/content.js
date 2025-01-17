@@ -1,3 +1,12 @@
+// Retrieve the key
+function getApiKey(callback) {
+    chrome.storage.local.get(['apiKey'], (result) => {
+        const decryptedKey = result.apiKey ? atob(result.apiKey) : null;
+        console.log(decryptedKey);
+        callback(decryptedKey);
+    });
+}
+
 function getMainTitle() {
     const h1Title = document.querySelector('h1');
     if (h1Title) {
@@ -51,11 +60,13 @@ document.body.appendChild(section);
 button.addEventListener('click', () => {
     chrome.storage.local.get(['userInput'], function(result) {
         const title = getMainTitle();
-        const userInput = result.userInput || 'No user input';
-        resultDiv.innerHTML = `
-            <p><strong>Page Title:</strong> ${title}</p>
-            <p><strong>User Input:</strong> ${userInput}</p>
-        `;
-        resultDiv.style.display = 'block';
+        getApiKey((key) => {
+            const userInput = key || 'No user input';
+            resultDiv.innerHTML = `
+                <p><strong>Page Title:</strong> ${title}</p>
+                <p><strong>User Input:</strong> ${userInput}</p>
+            `;
+            resultDiv.style.display = 'block';
+        });
     });
 });
