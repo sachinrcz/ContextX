@@ -81,6 +81,27 @@ function createContextButton() {
     return button;
 }
 
+// Add this new function before handleContextButtonClick
+function createCloseButton(responseDiv) {
+    const closeButton = document.createElement('button');
+    closeButton.textContent = 'x';
+    closeButton.style.cssText = `
+        position: absolute;
+        right: 5px;
+        top: 5px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-size: 14px;
+        color: #666;
+        padding: 2px 6px;
+    `;
+    closeButton.addEventListener('click', () => {
+        responseDiv.remove();
+    });
+    return closeButton;
+}
+
 // Function to handle context button clicks
 function handleContextButtonClick(text, button) {
     getApiKey((key) => {
@@ -119,25 +140,7 @@ function handleContextButtonClick(text, button) {
                     color: #666;
                 `;
                 
-                // Create close button
-                const closeButton = document.createElement('button');
-                closeButton.textContent = 'close (X)';
-                closeButton.style.cssText = `
-                    position: absolute;
-                    left: 5px;
-                    top: 5px;
-                    background: none;
-                    border: none;
-                    cursor: pointer;
-                    font-size: 14px;
-                    color: #666;
-                    padding: 2px 6px;
-                `;
-                closeButton.addEventListener('click', () => {
-                    responseDiv.remove();
-                });
-                
-                responseDiv.appendChild(closeButton);
+                responseDiv.appendChild(createCloseButton(responseDiv));
                 document.body.appendChild(responseDiv);
             }
             
@@ -148,24 +151,8 @@ function handleContextButtonClick(text, button) {
                 </div>
             `;
             
-            // Re-append close button since innerHTML overwrote it
-            const closeButton = document.createElement('button');
-            closeButton.textContent = 'close (X)';
-            closeButton.style.cssText = `
-                position: absolute;
-                left: 5px;
-                top: 5px;
-                background: none;
-                border: none;
-                cursor: pointer;
-                font-size: 14px;
-                color: #666;
-                padding: 2px 6px;
-            `;
-            closeButton.addEventListener('click', () => {
-                responseDiv.remove();
-            });
-            responseDiv.appendChild(closeButton);
+            // Re-append close button
+            responseDiv.appendChild(createCloseButton(responseDiv));
         })();
     });
 }
