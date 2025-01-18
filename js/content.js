@@ -1,3 +1,6 @@
+const endpoint = "https://api.openai.com/v1/chat/completions";
+const apiKey = "";
+
 // Retrieve the key
 function getApiKey(callback) {
     chrome.storage.local.get(['apiKey'], (result) => {
@@ -5,10 +8,6 @@ function getApiKey(callback) {
         callback(decryptedKey);
     });
 }
-
-
-const endpoint = "https://api.openai.com/v1/chat/completions";
-const apiKey = "";
 
 async function sendPrompt(prompt, apiKey) {
     try {
@@ -35,8 +34,6 @@ async function sendPrompt(prompt, apiKey) {
         console.error("Error:", error.message);
     }
 }
-
-
 
 // Create a function to process text content (strip HTML and count chars)
 function getCleanTextContent(element) {
@@ -68,6 +65,7 @@ function getCleanTextContent(element) {
 function createContextButton() {
     const button = document.createElement('button');
     button.textContent = 'C';
+    button.dataset.contextButton = 'true';
     button.style.cssText = `
         position: absolute;
         right: 0px;
@@ -106,14 +104,15 @@ function handleContextButtonClick(text, button) {
                     border-radius: 5px;
                     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
                     z-index: 1000;
+                    color: #666;
                 `;
                 
                 // Create close button
                 const closeButton = document.createElement('button');
-                closeButton.textContent = 'x';
+                closeButton.textContent = 'close (X)';
                 closeButton.style.cssText = `
                     position: absolute;
-                    right: 5px;
+                    left: 5px;
                     top: 5px;
                     background: none;
                     border: none;
@@ -139,10 +138,10 @@ function handleContextButtonClick(text, button) {
             
             // Re-append close button since innerHTML overwrote it
             const closeButton = document.createElement('button');
-            closeButton.textContent = 'x';
+            closeButton.textContent = 'close (X)';
             closeButton.style.cssText = `
                 position: absolute;
-                right: 5px;
+                left: 5px;
                 top: 5px;
                 background: none;
                 border: none;
@@ -161,14 +160,22 @@ function handleContextButtonClick(text, button) {
 
 // Process the page on load
 function initializeContextButtons() {
-    // Exclude nav elements from the initial selection
-    const elements = document.body.querySelectorAll('p:not(nav p), div:not(nav div), span:not(nav span), article:not(nav article), section:not(nav section)');
-    console.log(elements);
+    // Temporarily disconnect the observer if it exists
+    if (window.contextButtonObserver) {
+        window.contextButtonObserver.disconnect();
+    }
+
+    // Select all major content elements
+    const elements = document.body.querySelectorAll('p, div, span, article, section');
+    
     elements.forEach(element => {
-        // Skip if the element is inside a nav or already has a context button
-        if (element.closest('nav') || element.querySelector('button[textContent="C"]')) {
+        
+        // Skip elements that are parents of elements that already have context buttons
+        if (element.querySelector('[data-context-button="true"]')) {
             return;
         }
+        
+        // Skip elements that are children of elements that already have context buttons
         
         const cleanText = getCleanTextContent(element);
         
@@ -186,13 +193,38 @@ function initializeContextButtons() {
             element.appendChild(contextButton);
         }
     });
+
+    // Reconnect the observer if it exists
+    if (window.contextButtonObserver) {
+        window.contextButtonObserver.observe(document.body, {
+            childList: true,
+            subtree: true
+        });
+    }
 }
 
-// Run immediately since content script loads after DOM is ready
-initializeContextButtons();
+// Use DOMContentLoaded for initial load
+// document.addEventListener('DOMContentLoaded', initializeContextButtons);
 
-// Optional: Also run when window loads to catch any dynamically added content
-window.onload = initializeContextButtons;
+// Use MutationObserver to handle dynamically loaded content
+window.contextButtonObserver = new MutationObserver((mutations) => {
+    // Check if any of the mutations are our own button additions
+    const shouldProcess = mutations.some(mutation => {
+        return Array.from(mutation.addedNodes).every(node => {
+            return !(node instanceof HTMLButtonElement && node.textContent === 'C');
+        });
+    });
+
+    if (shouldProcess) {
+        initializeContextButtons();
+    }
+});
+
+// Start observing the document with the configured parameters
+window.contextButtonObserver.observe(document.body, {
+    childList: true,
+    subtree: true
+});
 
 
 
