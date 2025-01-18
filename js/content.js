@@ -109,7 +109,28 @@ button.addEventListener('click', () => {
 
 // Create a function to process text content (strip HTML and count chars)
 function getCleanTextContent(element) {
-    return element.innerText.trim();
+    // Create a clone of the element to manipulate
+    const clone = element.cloneNode(true);
+    
+    // Remove all nav elements from the clone
+    const navElements = clone.getElementsByTagName('nav');
+    for (let i = navElements.length - 1; i >= 0; i--) {
+        navElements[i].remove();
+    }
+    
+    // Remove any context buttons we've added
+    const contextButtons = clone.querySelectorAll('button');
+    contextButtons.forEach(button => {
+        if (button.textContent === 'C') {
+            button.remove();
+        }
+    });
+    
+    // Remove any existing context response divs
+    const responseElements = clone.querySelectorAll('.context-response');
+    responseElements.forEach(elem => elem.remove());
+    
+    return clone.innerText.trim();
 }
 
 // Create and style the context button
@@ -119,7 +140,7 @@ function createContextButton() {
     button.style.cssText = `
         position: absolute;
         right: 0px;
-        top: -30px;
+        top: 0px;
         background-color: red;
         color: white;
         border: none;
@@ -135,7 +156,7 @@ function createContextButton() {
 function handleContextButtonClick(text, button) {
     getApiKey((key) => {
         (async () => {
-            const contextResponse = await sendPrompt("Please explain what \"" + text + "\" means", key);
+            const contextResponse = await sendPrompt("Provide context to the facts stated in the following snippet. Pleas respond in the same language as the snippet.: " + text , key);
             
             // Create or update response container
             let responseDiv = button.nextElementSibling;
@@ -145,31 +166,82 @@ function handleContextButtonClick(text, button) {
                 responseDiv.style.cssText = `
                     position: absolute;
                     right: 0px;
-                    top: 0;
+                    top: 30px;
                     width: 300px;
+                    max-height: 100%;
+                    overflow-y: auto;
                     background-color: white;
                     padding: 10px;
                     border-radius: 5px;
                     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
                     z-index: 1000;
                 `;
+                
+                // Create close button
+                const closeButton = document.createElement('button');
+                closeButton.textContent = 'x';
+                closeButton.style.cssText = `
+                    position: absolute;
+                    right: 5px;
+                    top: 5px;
+                    background: none;
+                    border: none;
+                    cursor: pointer;
+                    font-size: 14px;
+                    color: #666;
+                    padding: 2px 6px;
+                `;
+                closeButton.addEventListener('click', () => {
+                    responseDiv.remove();
+                });
+                
+                responseDiv.appendChild(closeButton);
                 button.parentNode.insertBefore(responseDiv, button.nextSibling);
             }
-            responseDiv.innerHTML = `<p>${contextResponse}</p>`;
+            
+            // Add content wrapper div to prevent close button overlap
+            responseDiv.innerHTML = `
+                <div style="padding-right: 20px;">
+                    <p>${contextResponse}</p>
+                </div>
+            `;
+            
+            // Re-append close button since innerHTML overwrote it
+            const closeButton = document.createElement('button');
+            closeButton.textContent = 'x';
+            closeButton.style.cssText = `
+                position: absolute;
+                right: 5px;
+                top: 5px;
+                background: none;
+                border: none;
+                cursor: pointer;
+                font-size: 14px;
+                color: #666;
+                padding: 2px 6px;
+            `;
+            closeButton.addEventListener('click', () => {
+                responseDiv.remove();
+            });
+            responseDiv.appendChild(closeButton);
         })();
     });
 }
 
 // Process the page on load
 function initializeContextButtons() {
-    const elements = document.body.querySelectorAll('p, div, span, article, section');
-    console.log("this is loading");
+    // Exclude nav elements from the initial selection
+    const elements = document.body.querySelectorAll('p:not(nav p), div:not(nav div), span:not(nav span), article:not(nav article), section:not(nav section)');
+    console.log(elements);
     elements.forEach(element => {
-        const cleanText = getCleanTextContent(element);
-        console.log(cleanText);
+        // Skip if the element is inside a nav or already has a context button
+        if (element.closest('nav') || element.querySelector('button[textContent="C"]')) {
+            return;
+        }
         
-        if (cleanText.length >= 20) {
-            // Check and set position relative
+        const cleanText = getCleanTextContent(element);
+        
+        if (cleanText.length >= 30) {
             const computedStyle = window.getComputedStyle(element);
             if (computedStyle.position === 'static') {
                 element.style.position = 'relative';
