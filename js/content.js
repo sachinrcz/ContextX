@@ -58,7 +58,15 @@ function getCleanTextContent(element) {
     const responseElements = clone.querySelectorAll('.context-response');
     responseElements.forEach(elem => elem.remove());
     
-    return clone.innerText.trim();
+    // Get only direct text content, excluding children
+    let text = '';
+    for (let node of clone.childNodes) {
+        if (node.nodeType === Node.TEXT_NODE) {
+            text += node.textContent;
+        }
+    }
+    
+    return text.trim();
 }
 
 // Create and style the context button
@@ -183,10 +191,11 @@ function initializeContextButtons() {
         
         if (cleanText.length >= 30) {
             const computedStyle = window.getComputedStyle(element);
-            if (computedStyle.position === 'static') {
-                element.style.position = 'relative';
-            }
-            
+            // if (computedStyle.position === 'static') {
+            // }
+            element.style.position = 'relative';
+            element.style.display = 'inline-block';
+
             const contextButton = createContextButton();
             contextButton.addEventListener('click', () => {
                 handleContextButtonClick(cleanText, contextButton);
@@ -204,9 +213,6 @@ function initializeContextButtons() {
         });
     }
 }
-
-// Use DOMContentLoaded for initial load
-// document.addEventListener('DOMContentLoaded', initializeContextButtons);
 
 // Use MutationObserver to handle dynamically loaded content
 window.contextButtonObserver = new MutationObserver((mutations) => {
