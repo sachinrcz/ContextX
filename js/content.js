@@ -2,7 +2,6 @@
 function getApiKey(callback) {
     chrome.storage.local.get(['apiKey'], (result) => {
         const decryptedKey = result.apiKey ? atob(result.apiKey) : null;
-        console.log(decryptedKey);
         callback(decryptedKey);
     });
 }
@@ -49,12 +48,6 @@ async function sendPrompt(prompt, apiKey) {
         console.error("Error:", error.message);
     }
 }
-
-// (async () => {
-//     const userPrompt = "Enter your prompt here";
-//     const response = await sendPrompt(userPrompt);
-//     console.log("Response:", response);
-// })();
 
 // Create and insert UI elements
 const section = document.createElement('section');
@@ -113,6 +106,90 @@ button.addEventListener('click', () => {
     const title = getMainTitle();
     sendContextRequest(title);
 });
+
+// Create a function to process text content (strip HTML and count chars)
+function getCleanTextContent(element) {
+    return element.innerText.trim();
+}
+
+// Create and style the context button
+function createContextButton() {
+    const button = document.createElement('button');
+    button.textContent = 'C';
+    button.style.cssText = `
+        position: absolute;
+        right: 0px;
+        top: -30px;
+        background-color: red;
+        color: white;
+        border: none;
+        padding: 5px 10px;
+        border-radius: 3px;
+        cursor: pointer;
+        font-size: 12px;
+    `;
+    return button;
+}
+
+// Function to handle context button clicks
+function handleContextButtonClick(text, button) {
+    getApiKey((key) => {
+        (async () => {
+            const contextResponse = await sendPrompt("Please explain what \"" + text + "\" means", key);
+            
+            // Create or update response container
+            let responseDiv = button.nextElementSibling;
+            if (!responseDiv || !responseDiv.classList.contains('context-response')) {
+                responseDiv = document.createElement('div');
+                responseDiv.classList.add('context-response');
+                responseDiv.style.cssText = `
+                    position: absolute;
+                    right: 0px;
+                    top: 0;
+                    width: 300px;
+                    background-color: white;
+                    padding: 10px;
+                    border-radius: 5px;
+                    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+                    z-index: 1000;
+                `;
+                button.parentNode.insertBefore(responseDiv, button.nextSibling);
+            }
+            responseDiv.innerHTML = `<p>${contextResponse}</p>`;
+        })();
+    });
+}
+
+// Process the page on load
+function initializeContextButtons() {
+    const elements = document.body.querySelectorAll('p, div, span, article, section');
+    console.log("this is loading");
+    elements.forEach(element => {
+        const cleanText = getCleanTextContent(element);
+        console.log(cleanText);
+        
+        if (cleanText.length >= 20) {
+            // Check and set position relative
+            const computedStyle = window.getComputedStyle(element);
+            if (computedStyle.position === 'static') {
+                element.style.position = 'relative';
+            }
+            
+            const contextButton = createContextButton();
+            contextButton.addEventListener('click', () => {
+                handleContextButtonClick(cleanText, contextButton);
+            });
+            
+            element.appendChild(contextButton);
+        }
+    });
+}
+
+// Run immediately since content script loads after DOM is ready
+initializeContextButtons();
+
+// Optional: Also run when window loads to catch any dynamically added content
+window.onload = initializeContextButtons;
 
 
 
