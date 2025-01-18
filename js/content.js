@@ -87,17 +87,29 @@ function handleContextButtonClick(text, button) {
         (async () => {
             const contextResponse = await sendPrompt("Provide context to the facts stated in the following snippet. Pleas respond in the same language as the snippet.: " + text , key);
             
+            // Get button position relative to the document
+            const buttonRect = button.getBoundingClientRect();
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            const buttonTop = buttonRect.top + scrollTop;
+            console.log(buttonRect);
+            const buttonRight = window.innerWidth - buttonRect.right;
+            
             // Create or update response container
-            let responseDiv = button.nextElementSibling;
-            if (!responseDiv || !responseDiv.classList.contains('context-response')) {
+            let responseDiv = document.querySelector(`[data-response-for="${button.dataset.uniqueId}"]`);
+            if (!responseDiv) {
                 responseDiv = document.createElement('div');
                 responseDiv.classList.add('context-response');
+                // Add a unique identifier to link the response to its button
+                const uniqueId = 'context-' + Date.now();
+                button.dataset.uniqueId = uniqueId;
+                responseDiv.dataset.responseFor = uniqueId;
+                
                 responseDiv.style.cssText = `
                     position: absolute;
-                    right: 0px;
-                    top: 30px;
+                    right: ${buttonRight}px;
+                    top: ${buttonTop + buttonRect.height + 5}px;
                     width: 300px;
-                    max-height: 100%;
+                    max-height: 80vh;
                     overflow-y: auto;
                     background-color: white;
                     padding: 10px;
@@ -126,7 +138,7 @@ function handleContextButtonClick(text, button) {
                 });
                 
                 responseDiv.appendChild(closeButton);
-                button.parentNode.insertBefore(responseDiv, button.nextSibling);
+                document.body.appendChild(responseDiv);
             }
             
             // Add content wrapper div to prevent close button overlap
@@ -169,13 +181,16 @@ function initializeContextButtons() {
     const elements = document.body.querySelectorAll('p, div, span, article, section');
     
     elements.forEach(element => {
-        
         // Skip elements that are parents of elements that already have context buttons
         if (element.querySelector('[data-context-button="true"]')) {
             return;
         }
         
-        // Skip elements that are children of elements that already have context buttons
+        // Skip context-response elements and their children
+        if (element.classList.contains('context-response') || 
+            element.closest('.context-response')) {
+            return;
+        }
         
         const cleanText = getCleanTextContent(element);
         
