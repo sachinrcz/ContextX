@@ -18,7 +18,8 @@ async function sendPrompt(prompt, apiKey) {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                model: "gpt-4", // or "gpt-3.5-turbo"
+                // model: "gpt-4", // or "gpt-3.5-turbo"
+                model: "gpt-3.5-turbo", // or "gpt-3.5-turbo"
                 messages: [{ role: "user", content: prompt }]
             })
         });
@@ -186,11 +187,7 @@ function handleContextButtonClick(text, button) {
 
 // Process the page on load
 function initializeContextButtons() {
-    // Temporarily disconnect the observer if it exists
-    if (window.contextButtonObserver) {
-        window.contextButtonObserver.disconnect();
-    }
-
+    console.log("Initialeze buttons  starting");
     // Select all major content elements
     const elements = document.body.querySelectorAll('p, div, span, article, section');
     
@@ -221,35 +218,55 @@ function initializeContextButtons() {
             element.appendChild(contextButton);
         }
     });
-
-    // Reconnect the observer if it exists
-    if (window.contextButtonObserver) {
-        window.contextButtonObserver.observe(document.body, {
-            childList: true,
-            subtree: true
-        });
-    }
 }
 
-// Use MutationObserver to handle dynamically loaded content
-window.contextButtonObserver = new MutationObserver((mutations) => {
-    // Check if any of the mutations are our own button additions
-    const shouldProcess = mutations.some(mutation => {
-        return Array.from(mutation.addedNodes).every(node => {
-            return !(node instanceof HTMLButtonElement && node.textContent === 'C');
-        });
-    });
-
-    if (shouldProcess) {
+// Replace the MutationObserver code with this new implementation
+function initializeWithRetry() {
+    // Initial processing
+    console.log("Initialeze with retry starting");
+    initializeContextButtons();
+    
+    let attempts = 0;
+    const maxAttempts = 10;
+    const interval = 1000; // Check every second
+    
+    // Periodic check for new content
+    const checkInterval = setInterval(() => {
+        attempts++;
         initializeContextButtons();
-    }
-});
+        
+        // Stop checking after maxAttempts
+        if (attempts >= maxAttempts) {
+            clearInterval(checkInterval);
+        }
+    }, interval);
+    
+    // Process on scroll (debounced)
+    let scrollTimeout;
+    window.addEventListener('scroll', () => {
+        clearTimeout(scrollTimeout);
+        scrollTimeout = setTimeout(() => {
+            initializeContextButtons();
+        }, 250); // Wait 250ms after scroll stops
+    });
+    
+    // Process on click (debounced)
+    let clickTimeout;
+    document.addEventListener('click', () => {
+        clearTimeout(clickTimeout);
+        clickTimeout = setTimeout(() => {
+            initializeContextButtons();
+        }, 250);
+    });
+}
 
-// Start observing the document with the configured parameters
-window.contextButtonObserver.observe(document.body, {
-    childList: true,
-    subtree: true
-});
-
-
-
+// Start the initialization process when the page loads
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initializeWithRetry);
+} else {
+    // If DOMContentLoaded has already fired, run immediately
+    initializeWithRetry();
+}
+console.log("Script loaded!");
+// Remove the existing MutationObserver code
+// Delete or comment out the previous window.contextButtonObserver code
