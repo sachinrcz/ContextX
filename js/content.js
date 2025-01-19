@@ -135,7 +135,7 @@ function handleContextButtonClick(text, button) {
             const contextResponse = await sendPrompt(
                 " Step 1: Analyse the snippet at the end of this prompt and determine what language it was written in. Remember this as the \"Question language\" " +
                 " Step 2: Provide context to the facts stated in the snippet." + 
-                " Cover different views on the topic including a scientific perspective." +
+                " Cover different views on the topic including a scientific perspective," +
                 " resources and reasoning to asses the credibility of the facts stated. " + 
                 " Don't mention the language or steps analysis in the response." +                
                 " Your responses must be in the \"Question language\" Here is the snippet: " + text , key);
