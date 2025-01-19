@@ -81,8 +81,8 @@ function createContextButton() {
         background-color: red;
         color: white;
         border: none;
-        padding: 5px 10px;
-        border-radius: 3px;
+        padding: 2px 4px;
+        border-radius: 50%;
         cursor: pointer;
         font-size: 12px;
     `;
@@ -114,7 +114,15 @@ function createCloseButton(responseDiv) {
 function handleContextButtonClick(text, button) {
     getApiKey((key) => {
         (async () => {
-            const contextResponse = await sendPrompt("Provide context to the facts stated in the following snippet. Pleas respond in the same language as the snippet.: " + text , key);
+
+            // V1 : Quality is good, response a bit too lenghty, slow.
+            //const contextResponse = await sendPrompt("Provide context to the facts stated in the following snippet. Pleas respond in the same language as the snippet.: " + text , key);
+
+            const contextResponse = await sendPrompt("Provide context to the facts stated" + 
+                " in the text at the end of this prompt. Cover" +
+                " different views on the topic including a scientific perspective." +
+                " resources and reasoning to asses the credibility of the facts stated. " +                 
+                " Respond in the same language as the language of the text provided. Here is the text: " + text , key);
             
             // Get button position relative to the document
             const buttonRect = button.getBoundingClientRect();
@@ -191,8 +199,6 @@ function initializeContextButtons() {
         
         if (cleanText.length >= 30) {
             const computedStyle = window.getComputedStyle(element);
-            // if (computedStyle.position === 'static') {
-            // }
             element.style.position = 'relative';
             element.style.display = 'inline-block';
 
