@@ -11,6 +11,13 @@ function getApiKey(callback) {
 
 async function sendPrompt(prompt, apiKey) {
     try {
+        // Get the stored GPT version
+        const gptVersion = await new Promise((resolve) => {
+            chrome.storage.local.get(['gptVersion'], (result) => {
+                resolve(result.gptVersion || 'gpt-3.5-turbo'); // Default to GPT-3.5 if not set
+            });
+        });
+
         const response = await fetch(endpoint, {
             method: "POST",
             headers: {
@@ -18,8 +25,7 @@ async function sendPrompt(prompt, apiKey) {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                // model: "gpt-4", // or "gpt-3.5-turbo"
-                model: "gpt-3.5-turbo", // or "gpt-3.5-turbo"
+                model: gptVersion,
                 messages: [{ role: "user", content: prompt }]
             })
         });
