@@ -43,6 +43,13 @@ document.addEventListener('DOMContentLoaded', function() {
     chrome.storage.local.get(['gptVersion'], (result) => {
         if (result.gptVersion) {
             gptVersionSelect.value = result.gptVersion;
+        } else {
+            // Set default value if none exists
+            const defaultVersion = 'gpt-3.5-turbo';
+            gptVersionSelect.value = defaultVersion;
+            chrome.storage.local.set({ gptVersion: defaultVersion }, () => {
+                console.log('Default GPT version set to:', defaultVersion);
+            });
         }
     });
 

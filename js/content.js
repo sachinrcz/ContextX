@@ -132,15 +132,33 @@ function handleContextButtonClick(text, button) {
             //     " resources and reasoning to asses the credibility of the facts stated. " +                 
             //     " Translate your response to the same language as the language of the text provided. Here is the text: " + text , key);
 
-            const contextResponse = await sendPrompt(
-                " Step 1: Analyse the snippet at the end of this prompt and determine what language it was written in. Remember this as the \"Question language\" " +
-                " Step 2: Provide context to the facts stated in the snippet." + 
-                " Cover different views on the topic including a scientific perspective," +
-                " resources and reasoning to asses the credibility of the facts stated. " + 
-                " Don't mention the language or steps analysis in the response." +                
-                " Your responses must be in the \"Question language\" Here is the snippet: " + text , key);
+            // const contextResponse = await sendPrompt(
+            //     " Step 1: Analyse the snippet at the end of this prompt and determine what language it was written in. Remember this as the \"Question language\" " +
+            //     " Step 2: Provide context to the facts stated in the snippet." + 
+            //     " Cover different views on the topic including a scientific perspective," +
+            //     " resources and reasoning to asses the credibility of the facts stated. " + 
+            //     " Don't mention the language or steps analysis in the response." +                
+            //     " Your responses must be in the \"Question language\" Here is the snippet: " + text , key);
             
-
+            const contextResponse = await sendPrompt(   
+                "Analyze the following post and provide a concise, factual explanation in a neutral, accessible, and trustworthy tone. Ensure the response adheres to the following format and principles:\n\n" +
+                "Principles:\n" +
+                "Neutrality: Avoid judgment, opinions, or subjective interpretations.\n" +
+                "Clarity: Simplify complex information into digestible insights. Avoid jargon unless necessary, and explain terms when used.\n" +
+                "Transparency: Clearly cite credible sources for further exploration where relevant.\n" +
+                "Non-Bias: Present all perspectives equally without favoring a particular viewpoint.\n\n" +
+                "Output Format (Always in this Structure):\n" +
+                "Summary of the Post:\n" +
+                "Provide a clear and neutral summary of the content, highlighting key points without adding opinions.\n" +
+                "Relevance or Context:\n" +
+                "Explain the broader context or background that supports understanding. Include relevant facts, timelines, or situations tied to the post.\n" +
+                "Further Exploration:\n" +
+                "Offer up to two credible sources (trusted news outlets, studies, or reports) for the user to further investigate the claim or subject. Avoid labeling content as 'true' or 'false.'\n\n" +
+                "Tone of Voice:\n" +
+                "Always write in Context's tone—curious, empowering, and clear. Be conversational yet professional, ensuring trust and engagement without overwhelming the reader.\n\n" +
+                "Content to Analyze:\n\n" +
+                text, key);
+            
             
             // Get button position relative to the document
             const buttonRect = button.getBoundingClientRect();
