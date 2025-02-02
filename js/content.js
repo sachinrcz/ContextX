@@ -117,48 +117,32 @@ function createCloseButton(responseDiv) {
     return closeButton;
 }
 
+function formatResponseText(text) {
+    // Split sections by headings ending with colon
+    const sections = text.split(/(\b.+\:)/g).filter(Boolean);
+    
+    let formatted = '';
+    for (let i = 0; i < sections.length; i++) {
+        if (sections[i].endsWith(':')) {
+            // Add heading style
+            formatted += `<strong class="response-heading">${sections[i]}</strong>`;
+            // Get content (next item) and split paragraphs
+            const content = sections[++i].split('\n\n').filter(Boolean);
+            formatted += content.map(p => `<p class="response-content">${p.replace(/\n/g, '<br>')}</p>`).join('');
+        } else {
+            // Handle any text without headings
+            formatted += `<p>${sections[i].replace(/\n/g, '<br>')}</p>`;
+        }
+    }
+    return formatted;
+}
+
 // Function to handle context button clicks
 function handleContextButtonClick(text, button) {
     getApiKey((key) => {
         (async () => {
-
-            // V1 : Quality is good, response a bit too lenghty, slow.
-            //const contextResponse = await sendPrompt("Provide context to the facts stated in the following snippet. Pleas respond in the same language as the snippet.: " + text , key);
-
-            // V2
-            // const contextResponse = await sendPrompt("Provide context to the facts stated" + 
-            //     " in the text at the end of this prompt. Cover" +
-            //     " different views on the topic including a scientific perspective." +
-            //     " resources and reasoning to asses the credibility of the facts stated. " +                 
-            //     " Translate your response to the same language as the language of the text provided. Here is the text: " + text , key);
-
-            // const contextResponse = await sendPrompt(
-            //     " Step 1: Analyse the snippet at the end of this prompt and determine what language it was written in. Remember this as the \"Question language\" " +
-            //     " Step 2: Provide context to the facts stated in the snippet." + 
-            //     " Cover different views on the topic including a scientific perspective," +
-            //     " resources and reasoning to asses the credibility of the facts stated. " + 
-            //     " Don't mention the language or steps analysis in the response." +                
-            //     " Your responses must be in the \"Question language\" Here is the snippet: " + text , key);
-            
             const contextResponse = await sendPrompt(   
-                "Analyze the following post and provide a concise, factual explanation in a neutral, accessible, and trustworthy tone. Ensure the response adheres to the following format and principles:\n\n" +
-                "Principles:\n" +
-                "Neutrality: Avoid judgment, opinions, or subjective interpretations.\n" +
-                "Clarity: Simplify complex information into digestible insights. Avoid jargon unless necessary, and explain terms when used.\n" +
-                "Transparency: Clearly cite credible sources for further exploration where relevant.\n" +
-                "Non-Bias: Present all perspectives equally without favoring a particular viewpoint.\n\n" +
-                "Output Format (Always in this Structure):\n" +
-                "Summary of the Post:\n" +
-                "Provide a clear and neutral summary of the content, highlighting key points without adding opinions.\n" +
-                "Relevance or Context:\n" +
-                "Explain the broader context or background that supports understanding. Include relevant facts, timelines, or situations tied to the post.\n" +
-                "Further Exploration:\n" +
-                "Offer up to two credible sources (trusted news outlets, studies, or reports) for the user to further investigate the claim or subject. Avoid labeling content as 'true' or 'false.'\n\n" +
-                "Tone of Voice:\n" +
-                "Always write in Context's tone—curious, empowering, and clear. Be conversational yet professional, ensuring trust and engagement without overwhelming the reader.\n\n" +
-                "Content to Analyze:\n\n" +
-                text, key);
-            
+                PROMPTS.contextAnalysis + "\n\n" + text, key);
             
             // Get button position relative to the document
             const buttonRect = button.getBoundingClientRect();
@@ -185,11 +169,13 @@ function handleContextButtonClick(text, button) {
                     max-height: 80vh;
                     overflow-y: auto;
                     background-color: white;
-                    padding: 10px;
+                    padding: 20px 15px;
                     border-radius: 5px;
-                    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+                    box-shadow: 0 2px 10px rgba(0,0,0,0.15);
                     z-index: 1000;
-                    color: #666;
+                    color: #444;
+                    font-size: 14px;
+                    line-height: 1.5;
                 `;
                 
                 responseDiv.appendChild(createCloseButton(responseDiv));
@@ -199,7 +185,7 @@ function handleContextButtonClick(text, button) {
             // Add content wrapper div to prevent close button overlap
             responseDiv.innerHTML = `
                 <div style="padding-right: 20px;">
-                    <p>${contextResponse}</p>
+                    ${formatResponseText(contextResponse)}
                 </div>
             `;
             
