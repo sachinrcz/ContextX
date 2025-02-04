@@ -42,7 +42,7 @@ If you use ContextX in your research or project, please cite:
 
 ```bibtex
 @software{modcandy,
-  author = {Jonne van Veggel and Sachin, Singh},
+  author = {Jonne van Veggel, Sachin Singh and Luuk Barten},
   title = {ContextX, AI powered context analysis},
   year = {2025},
   publisher = {GitHub},
