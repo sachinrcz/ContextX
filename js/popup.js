@@ -76,7 +76,7 @@ document.addEventListener('DOMContentLoaded', function() {
     deleteButton.addEventListener('click', function() {
         chrome.storage.local.remove('apiKey', () => {
             updateApiKeyDisplay(null);
-            message.querySelector('ct-message__message').textContent = "Key deleted!";
+            message.querySelector('.ct-message__message').textContent = "Key deleted!";
             message.classList.add('ct-message--show');
         });
     });
