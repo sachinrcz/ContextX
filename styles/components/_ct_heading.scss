@@ -1,0 +1,14 @@
+.ct-heading {
+    font-family: $font-heading;
+    font-size: $font-size-heading;
+    font-weight: 700;
+    line-height: 150%;
+    color: $color-secondary;
+    margin: 0px;
+
+    &--secondary {
+        font-family: $font-body;
+        font-size: $font-size-heading-secondary;
+    }
+
+}
