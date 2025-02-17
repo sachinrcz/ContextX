@@ -1,0 +1,23 @@
+.ct-input {
+    display: flex;
+    flex-direction: column;
+
+    &__label {
+        font-family: $font-body;
+        color: $color-secondary;
+    } 
+
+    &__field {
+        border-radius: $border-radius-inputs;
+        font-family: $font-action;
+        box-sizing: border-box;
+        padding: 8px;
+        margin-bottom: $spacing-medium;
+        border: 1px solid $color-dark-grey;
+    }
+    
+    &__field--select {
+        padding-right: 18px;
+        cursor: pointer;
+    }
+}

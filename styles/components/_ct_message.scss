@@ -1,0 +1,30 @@
+.ct-message {
+    position: fixed;
+    bottom: 0px;
+    left: 0px;    
+    width: 100%;
+    box-sizing: border-box;
+    border-top: $color-dark-grey solid 1px;
+    background-color: $color-secondary;
+    padding: $spacing-medium;    
+    display: none;   
+
+    &__message {
+        font-size: $font-size-body;
+        color: $color-blank;
+        line-height: 150%;
+        margin: 0px;
+    }
+
+    &__button {
+        position: absolute;
+        top: 4px;
+        right: 4px;        
+    }   
+
+    &--show {         
+        display: block;    
+        -webkit-animation: fadeIn 0.3s;
+        animation: fadeIn 0.3s;
+    }
+}
