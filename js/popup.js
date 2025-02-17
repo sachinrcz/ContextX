@@ -15,13 +15,13 @@ function updateApiKeyDisplay(apiKey) {
         const maskedKey = '****' + apiKey.slice(-4);
         apiKeyInput.value = maskedKey;
         apiKeyInput.readOnly = true;
-        saveButton.classList.add('button--hidden');
-        deleteButton.classList.remove('button--hidden');
+        saveButton.classList.add('ct-button--hidden');
+        deleteButton.classList.remove('ct-button--hidden');
     } else {
         apiKeyInput.value = '';
         apiKeyInput.readOnly = false;
-        saveButton.classList.remove('button--hidden');
-        deleteButton.classList.add('button--hidden');
+        saveButton.classList.remove('ct-button--hidden');
+        deleteButton.classList.add('ct-button--hidden');
     }
 }
 
@@ -57,8 +57,8 @@ document.addEventListener('DOMContentLoaded', function() {
     gptVersionSelect.addEventListener('change', function() {
         chrome.storage.local.set({ gptVersion: this.value }, () => {
             const message = document.getElementById('message');
-            message.querySelector('.message__message').textContent = 'GPT model set to: ' + this.value;
-            message.classList.add('message--show');
+            message.querySelector('.ct-message__message').textContent = 'GPT model set to: ' + this.value;
+            message.classList.add('ct-message--show');
         });
     });
 
@@ -69,19 +69,19 @@ document.addEventListener('DOMContentLoaded', function() {
         saveApiKey(apiKey);
         
         // Show message and set content
-        message.querySelector('.message__message').textContent = "Key saved!";
-        message.classList.add('message--show');
+        message.querySelector('.ct-message__message').textContent = "Key saved!";
+        message.classList.add('ct-message--show');
     });
 
     deleteButton.addEventListener('click', function() {
         chrome.storage.local.remove('apiKey', () => {
             updateApiKeyDisplay(null);
-            message.querySelector('.message__message').textContent = "Key deleted!";
-            message.classList.add('message--show');
+            message.querySelector('ct-message__message').textContent = "Key deleted!";
+            message.classList.add('ct-message--show');
         });
     });
 
-    message.querySelector('.message__button').addEventListener('click', function() {
-        message.classList.remove('message--show');
+    message.querySelector('.ct-message__button').addEventListener('click', function() {
+        message.classList.remove('ct-message--show');
     });
 });

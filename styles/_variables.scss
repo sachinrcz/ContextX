@@ -12,12 +12,22 @@ $font-body: 'Space Mono', sans-serif;
 $font-action: 'Poppins', sans-serif;
 
 // Font size
-$font-size-body: 18px;
-$font-size-heading: 40px;
-$font-size-heading-secondary: 25px;
+$font-size-body: 16px;
+$font-size-heading: 25px;
+$font-size-heading-secondary: 18px;
 
 // Spacing 
 $spacing-medium: 18px;
 
 // Borders
 $border-radius-inputs: 15px;
+
+// Animations
+@keyframes fadeIn {
+    0% {        
+        opacity: 0;
+    }    
+    100% {
+        opacity: 1;       
+    }
+}

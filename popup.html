@@ -9,35 +9,37 @@
         <link rel="stylesheet" href="styles/styles.css">
         <title>Context</title>
     </head>
-    <body class="ct_body">
+    <body class="ct-body">        
         <h1 class="ct-heading">Context</h1>
-        <p class="ct-paragraph">Context is an AI powered extension that allows you to add context to what you are reading.</p>
-        <h2 class="ct-heading ct-heading--secondary">Settings</h2>
-        <div class="ct-input">
-            <label class="ct-input__label">GPT version</label>    
-            <select class="ct-input__field ct-input__field--select" id="gpt-version">
-                <option value="gpt-4">GPT-4</option>
-                <option value="gpt-3.5-turbo" selected>GPT-3.5-turbo</option>
-            </select>            
-        </div>
-        <div class="ct-input">
-            <label class="ct-input__label">Open API Key</label>    
-            <input class="ct-input__field ct-input__field--text" type="text" id="openai-api-key" placeholder="Enter your OpenAI API key">
-        </div>
-        <button class="button button--delete button--hidden" id="delete-api-key">Remove OpenAI API key</button>
-        <button class="button" id="save-api-key">Save</button>
-        
-        <h2 class="ct-heading ct-heading--secondary">Get an OpenAI API key</h2>
-        <p class="ct-paragraph">
+        <p class="ct-paragraph">An AI extension that adds context to content.</p>
+        <section class="ct-section">
+            <h2 class="ct-heading ct-heading--secondary">Settings</h2>
+            <div class="ct-input">
+                <label class="ct-input__label">GPT model</label>    
+                <select class="ct-input__field ct-input__field--select" id="gpt-version">
+                    <option value="gpt-4">GPT-4</option>
+                    <option value="gpt-3.5-turbo" selected>GPT-3.5-turbo</option>
+                </select>            
+            </div>
+            <div class="ct-input">
+                <label class="ct-input__label">Open API Key</label>    
+                <input class="ct-input__field ct-input__field--text" type="text" id="openai-api-key" placeholder="Enter your OpenAI API key">
+            </div>
+            <button class="ct-button button--delete ct-button--hidden" id="delete-api-key">Remove OpenAI API key</button>
+            <button class="ct-button" id="save-api-key">Save</button>
+        </section>    
+        <section class="ct-section">
+            <h2 class="ct-heading ct-heading--secondary">Get an OpenAI API key</h2>
+            <p class="ct-paragraph">To use Context, you'll need an OpenAI API key.</p>            
             <ul class="ct-list">
-                <li>Log in to your OpenAI account.</li>
-                <li>Navigate to the <a href="https://platform.openai.com/settings/organization/api-keys" target="_blank">API section</a> and generate an API key.</li>
-            </ul>
-        </p>
-        <footer>v.1.0.3</footer>
-        <span id="message" class="message">
-            <p class="message__message">{}</p>
-            <button class="message__button">X</button>
+                <li><a href="https://auth.openai.com/log-in" target="_blank">Log in</a> to your OpenAI account.</li>
+                <li>Generate an <a href="https://platform.openai.com/settings/organization/api-keys" target="_blank">API key</a>.</li>
+            </ul>            
+        </section>
+        <footer class="ct-footer">v.1.0.4</footer>
+        <span id="message" class="ct-message">
+            <p class="ct-message__message">{}</p>
+            <button class="ct-message__button ct-button ct-button--close">X</button>
         </span>
         <script src="js/popup.js"></script>
     </body>    
