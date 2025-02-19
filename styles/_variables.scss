@@ -1,0 +1,33 @@
+// Colors
+$color-primary: #ff7A59;
+$color-secondary: #2F3C7E;
+$color-blank: #FFFFFF;
+$color-light-grey: #F5F5F5;
+$color-dark-grey: #D9D9D9;
+//  $color-early-grey: just kidding, that's tea.;
+ 
+// Fonts
+$font-heading: 'Poppins', sans-serif;
+$font-body: 'Space Mono', sans-serif;
+$font-action: 'Poppins', sans-serif;
+
+// Font size
+$font-size-body: 16px;
+$font-size-heading: 25px;
+$font-size-heading-secondary: 18px;
+
+// Spacing 
+$spacing-medium: 18px;
+
+// Borders
+$border-radius-inputs: 15px;
+
+// Animations
+@keyframes fadeIn {
+    0% {        
+        opacity: 0;
+    }    
+    100% {
+        opacity: 1;       
+    }
+}

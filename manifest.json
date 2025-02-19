@@ -4,13 +4,13 @@
     "version": "1.0",
     "description": "POC for Context browser extension",
     "icons": {
-      "16": "images/network.png",
-      "48": "images/network.png",
-      "128": "images/network.png"
+      "16": "images/context.png",
+      "48": "images/context.png",
+      "128": "images/context.png"
     },
     "action": {
       "default_popup": "popup.html",
-      "default_icon": "images/network.png"
+      "default_icon": "images/context.png"
     },
     "permissions": ["storage"],
     "background": {

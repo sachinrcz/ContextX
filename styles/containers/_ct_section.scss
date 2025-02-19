@@ -1,0 +1,9 @@
+.ct-section {
+    margin: $spacing-medium 0px;
+    display: flex;
+    flex-direction: column;
+
+    .ct-button {
+        align-self: end;
+    }
+}
