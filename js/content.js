@@ -111,23 +111,33 @@ function createCloseButton(responseDiv) {
     return closeButton;
 }
 
+function url_domain(data) {
+    var    a      = document.createElement('a');
+           a.href = data;
+    return a.hostname;
+  }
+
 function formatResponseText(text) {
     // Split sections by headings ending with colon
-    const sections = text.split(/(\b.+\:)/g).filter(Boolean);
+    const sections = text.split(/(Summary of the Post:|Relevance or Context:|Further Exploration:)/gi);
 
     let formatted = '';
     for (let i = 0; i < sections.length; i++) {
         if (sections[i].endsWith(':')) {
             // Add heading style
-            formatted += `<strong class="response-heading">${sections[i]}</strong>`;
+            formatted += `<h3 class="ct-heading">${sections[i]}</h3>`;
             // Get content (next item) and split paragraphs
             const content = sections[++i].split('\n\n').filter(Boolean);
-            formatted += content.map(p => `<p class="response-content">${p.replace(/\n/g, '<br>')}</p>`).join('');
+            formatted += content.map(p => `<p class="ct-paragraph">${p.replace(/\n/g, ' <br/>')} </p>`).join('');
         } else {
             // Handle any text without headings
-            formatted += `<p>${sections[i].replace(/\n/g, '<br>')}</p>`;
+            formatted += `<p>${sections[i].replace(/\n/g, ' <br/>')} </p>`;
         }
     }
+    // Replace any string that start with http:// or https:// with a link
+    formatted = formatted.replace(/(http|https):\/\/[^\s]+/g, (match) => `</br><a href="${match}" target="_blank">${url_domain(match)}</a>`);
+
+
     return formatted;
 }
 
