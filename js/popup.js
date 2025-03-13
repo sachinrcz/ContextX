@@ -6,7 +6,7 @@ function saveApiKey(apiKey) {
 }
 
 function updateApiKeyDisplay(apiKey) {
-    const apiKeyInput = document.getElementById('openai-api-key');
+    const apiKeyInput = document.getElementById('api-key');
     const saveButton = document.getElementById('save-api-key');
     const deleteButton = document.getElementById('delete-api-key');
 
@@ -28,7 +28,6 @@ function updateApiKeyDisplay(apiKey) {
 document.addEventListener('DOMContentLoaded', function() {
     const saveButton = document.getElementById('save-api-key');
     const deleteButton = document.getElementById('delete-api-key');
-    const gptVersionSelect = document.getElementById('gpt-version');
     const message = document.getElementById('message');
 
     // Check for existing API key on load
@@ -39,35 +38,12 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Load saved GPT version
-    chrome.storage.local.get(['gptVersion'], (result) => {
-        if (result.gptVersion) {
-            gptVersionSelect.value = result.gptVersion;
-        } else {
-            // Set default value if none exists
-            const defaultVersion = 'gpt-3.5-turbo';
-            gptVersionSelect.value = defaultVersion;
-            chrome.storage.local.set({ gptVersion: defaultVersion }, () => {
-                console.log('Default GPT version set to:', defaultVersion);
-            });
-        }
-    });
-
-    // Handle GPT version change
-    gptVersionSelect.addEventListener('change', function() {
-        chrome.storage.local.set({ gptVersion: this.value }, () => {
-            const message = document.getElementById('message');
-            message.querySelector('.ct-message__message').textContent = 'GPT model set to: ' + this.value;
-            message.classList.add('ct-message--show');
-        });
-    });
-
     saveButton.addEventListener('click', function() {
-        const apiKeyInput = document.getElementById('openai-api-key');
+        const apiKeyInput = document.getElementById('api-key');
         const apiKey = apiKeyInput.value;
-        
+
         saveApiKey(apiKey);
-        
+
         // Show message and set content
         message.querySelector('.ct-message__message').textContent = "Key saved!";
         message.classList.add('ct-message--show');

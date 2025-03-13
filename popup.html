@@ -9,38 +9,31 @@
         <link rel="stylesheet" href="styles/styles.css">
         <title>Context</title>
     </head>
-    <body class="ct-body">        
+    <body class="ct-body">
         <h1 class="ct-heading">Context</h1>
         <p class="ct-paragraph">An AI extension that adds context to content.</p>
         <section class="ct-section">
             <h2 class="ct-heading ct-heading--secondary">Settings</h2>
             <div class="ct-input">
-                <label class="ct-input__label">GPT model</label>    
-                <select class="ct-input__field ct-input__field--select" id="gpt-version">
-                    <option value="gpt-4">GPT-4</option>
-                    <option value="gpt-3.5-turbo" selected>GPT-3.5-turbo</option>
-                </select>            
+                <label class="ct-input__label">Context API Key</label>
+                <input class="ct-input__field ct-input__field--text" type="text" id="api-key" placeholder="Enter your Context API key">
             </div>
-            <div class="ct-input">
-                <label class="ct-input__label">Open API Key</label>    
-                <input class="ct-input__field ct-input__field--text" type="text" id="openai-api-key" placeholder="Enter your OpenAI API key">
-            </div>
-            <button class="ct-button button--delete ct-button--hidden" id="delete-api-key">Remove OpenAI API key</button>
+            <button class="ct-button button--delete ct-button--hidden" id="delete-api-key">Reset Context API key</button>
             <button class="ct-button" id="save-api-key">Save</button>
-        </section>    
-        <section class="ct-section">
-            <h2 class="ct-heading ct-heading--secondary">Get an OpenAI API key</h2>
-            <p class="ct-paragraph">To use Context, you'll need an OpenAI API key.</p>            
-            <ul class="ct-list">
-                <li><a href="https://auth.openai.com/log-in" target="_blank">Log in</a> to your OpenAI account.</li>
-                <li>Generate an <a href="https://platform.openai.com/settings/organization/api-keys" target="_blank">API key</a>.</li>
-            </ul>            
         </section>
-        <footer class="ct-footer">v.1.0.4</footer>
+        <section class="ct-section">
+            <h2 class="ct-heading ct-heading--secondary">Get a Context API key</h2>
+            <p class="ct-paragraph">To use Context, you'll need a Context API key.</p>
+            <ul class="ct-list">
+                <li><a href="https://contextdashboard.vercel.app/" target="_blank">Log in</a> to your Context account or <a href="https://contextdashboard.vercel.app/" target="_blank">register</a>.</li>
+                <li>Generate a context API key</a>.</li>
+            </ul>
+        </section>
+        <footer class="ct-footer">v.1.0.5</footer>
         <span id="message" class="ct-message">
             <p class="ct-message__message">{}</p>
             <button class="ct-message__button ct-button ct-button--close">X</button>
         </span>
         <script src="js/popup.js"></script>
-    </body>    
+    </body>
 </html>

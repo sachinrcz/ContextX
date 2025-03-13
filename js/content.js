@@ -10,7 +10,6 @@ function getApiKey(callback) {
 }
 
 async function sendPrompt(prompt, apiKey) {
-
     try {
         const response = await fetch(contextEndPoint, {
             method: "POST",
