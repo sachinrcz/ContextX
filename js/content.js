@@ -9,6 +9,14 @@ function getApiKey(callback) {
     });
 }
 
+function ct_heading(text) {
+    const heading = document.createElement('h1');
+    heading.classList.add('ct-heading');
+    heading.textContent = text;
+    return heading;
+}
+
+
 async function sendPrompt(prompt, apiKey) {
     try {
         const response = await fetch(contextEndPoint, {
@@ -56,7 +64,7 @@ function getCleanTextContent(element) {
     });
 
     // Remove any existing context response divs
-    const responseElements = clone.querySelectorAll('.context-response');
+    const responseElements = clone.querySelectorAll('.ct-response *');
     responseElements.forEach(elem => elem.remove());
 
     // Get only direct text content, excluding children
@@ -93,17 +101,21 @@ function createContextButton() {
 // Add this new function before handleContextButtonClick
 function createCloseButton(responseDiv) {
     const closeButton = document.createElement('button');
-    closeButton.textContent = 'x';
+
+    //load icon as img
+    const img = document.createElement('img');
+    img.src = chrome.runtime.getURL('/styles/icons/close.svg');
+    closeButton.appendChild(img);
     closeButton.style.cssText = `
         position: absolute;
-        right: 5px;
-        top: 5px;
+        right: 15px;
+        top: 15px;
+        width: 15px;
+        height: 15px;
+        padding: 0px;
         background: none;
         border: none;
         cursor: pointer;
-        font-size: 14px;
-        color: #666;
-        padding: 2px 6px;
     `;
     closeButton.addEventListener('click', () => {
         responseDiv.remove();
@@ -125,7 +137,7 @@ function formatResponseText(text) {
     for (let i = 0; i < sections.length; i++) {
         if (sections[i].endsWith(':')) {
             // Add heading style
-            formatted += `<h3 class="ct-heading">${sections[i]}</h3>`;
+            formatted += `<h3 class="ct-heading ct-heading--secondary">${sections[i]}</h3>`;
             // Get content (next item) and split paragraphs
             const content = sections[++i].split('\n\n').filter(Boolean);
             formatted += content.map(p => `<p class="ct-paragraph">${p.replace(/\n/g, ' <br/>')} </p>`).join('');
@@ -135,8 +147,7 @@ function formatResponseText(text) {
         }
     }
     // Replace any string that start with http:// or https:// with a link
-    formatted = formatted.replace(/(http|https):\/\/[^\s]+/g, (match) => `</br><a href="${match}" target="_blank">${url_domain(match)}</a>`);
-
+    formatted = formatted.replace(/(http|https):\/\/[^\s]+/g, (match) => `</br><a class="ct-link" href="${match}" target="_blank">${url_domain(match)}</a></br>`);
 
     return formatted;
 }
@@ -145,7 +156,8 @@ function formatResponseText(text) {
 function handleContextButtonClick(text, button) {
     getApiKey((key) => {
         (async () => {
-            const contextResponse = await sendPrompt(text, key);
+            // const contextResponse = await sendPrompt(text, key);
+            const contextResponse = "Summary of the Post:\nThe post discusses a court ruling related to a restraining order against the Trump administration's actions targeting the law firm Perkins Coie. Specifically, the order prevents the administration from barring employees of the firm from accessing government buildings, but it does not restrict security clearance reviews called for in Trump's order.\n\nRelevance or Context:\nThis appears to be related to ongoing tensions and legal battles between the Trump administration and Perkins Coie, a law firm that represented the Democratic National Committee and Hillary Clinton's 2016 presidential campaign. The firm's opposition research played a role in the Russia investigation, which has been a contentious issue during Trump's presidency.\n\nFurther Exploration:\n- An article from Reuters provides more details on the restraining order and the judge's ruling: https://www.reuters.com/article/us-usa-trump-perkins-coie/u-s-judge-blocks-portions-of-trumps-ban-on-perkins-coie-law-firm-idUSKBN27Q34X\n- For background on the broader context, this report from the Congressional Research Service outlines the Russia investigation and related controversies: https://crsreports.congress.gov/product/pdf/R/R45487";
 
             // Get button position relative to the document
             const buttonRect = button.getBoundingClientRect();
@@ -158,27 +170,15 @@ function handleContextButtonClick(text, button) {
             let responseDiv = document.querySelector(`[data-response-for="${button.dataset.uniqueId}"]`);
             if (!responseDiv) {
                 responseDiv = document.createElement('div');
-                responseDiv.classList.add('context-response');
+                responseDiv.classList.add('ct-response');
                 // Add a unique identifier to link the response to its button
                 const uniqueId = 'context-' + Date.now();
                 button.dataset.uniqueId = uniqueId;
                 responseDiv.dataset.responseFor = uniqueId;
 
                 responseDiv.style.cssText = `
-                    position: absolute;
                     right: ${buttonRight}px;
                     top: ${buttonTop + buttonRect.height + 5}px;
-                    width: 300px;
-                    max-height: 80vh;
-                    overflow-y: auto;
-                    background-color: white;
-                    padding: 20px 15px;
-                    border-radius: 5px;
-                    box-shadow: 0 2px 10px rgba(0,0,0,0.15);
-                    z-index: 1000;
-                    color: #444;
-                    font-size: 14px;
-                    line-height: 1.5;
                 `;
 
                 responseDiv.appendChild(createCloseButton(responseDiv));
@@ -187,10 +187,14 @@ function handleContextButtonClick(text, button) {
 
             // Add content wrapper div to prevent close button overlap
             responseDiv.innerHTML = `
-                <div style="padding-right: 20px;">
-                    ${formatResponseText(contextResponse)}
-                </div>
+            <div style="padding-right: 20px;">
+            <style>
+            @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+            </style>
+            ${formatResponseText(contextResponse)}
+            </div>
             `;
+            responseDiv.prepend(ct_heading("Context"));
 
             // Re-append close button
             responseDiv.appendChild(createCloseButton(responseDiv));
@@ -200,7 +204,7 @@ function handleContextButtonClick(text, button) {
 
 // Process the page on load
 function initializeContextButtons() {
-    console.log("Initialeze buttons  starting");
+    console.log("Initialize buttons starting");
     // Select all major content elements
     const elements = document.body.querySelectorAll('p, div, span, article, section');
 
@@ -236,7 +240,7 @@ function initializeContextButtons() {
 // Replace the MutationObserver code with this new implementation
 function initializeWithRetry() {
     // Initial processing
-    console.log("Initialeze with retry starting");
+    console.log("Initialize with retry starting");
     initializeContextButtons();
 
     let attempts = 0;

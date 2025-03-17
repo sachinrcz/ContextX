@@ -12,9 +12,6 @@
   margin: 0px;
   text-align: left;
 }
-.ct-body a {
-  color: #ff7A59;
-}
 
 .ct-footer {
   color: #2F3C7E;
@@ -103,6 +100,10 @@
   padding-left: 24px;
 }
 
+.ct-link {
+  color: #ff7A59;
+}
+
 .ct-message {
   position: fixed;
   bottom: 0px;
@@ -137,4 +138,24 @@
   line-height: 150%;
   color: #2F3C7E;
   margin: 0px 0px 18px 0px;
-}/*# sourceMappingURL=styles.css.map */
+}
+.ct-paragraph button {
+  display: none;
+}
+
+.ct-response {
+  position: absolute;
+  width: 410px;
+  height: 820px;
+  background-color: white;
+  padding: 34px 20px;
+  margin-right: 20px;
+  border-radius: 15px;
+  z-index: 1000;
+  font-size: 14px;
+  line-height: 1.5;
+  scrollbar-color: auto;
+  scrollbar-width: none;
+  overflow: scroll;
+  box-shadow: 20px 20px 0px 0px rgb(217, 217, 217);
+}
