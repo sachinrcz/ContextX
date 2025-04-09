@@ -1,3 +1,117 @@
+const OPEN_AI_RESPONSE = {
+        "response": "**Summary of the Post:**\nCommerce Secretary Howard Lutnick stated that the large-scale assembly of products like iPhones, traditionally done overseas, is expected to shift to the United States. He emphasized that millions of workers involved in such manufacturing processes would soon be employed domestically.\n\n**Relevance or Context:**\nLutnick's statement aligns with the Trump administration's recent trade policies aimed at revitalizing American manufacturing. The administration has imposed tariffs on imports, including steel and aluminum, to encourage domestic production. Lutnick has also advocated for using robotics and technology to enhance efficiency in U.S. manufacturing, suggesting a vision of a \"manufacturing renaissance\" driven by advanced technologies. ([axios.com](https://www.axios.com/2025/04/03/tech-jobs-robots-lutnick-manufacturing-renaissance?utm_source=openai))\n\n**Further Exploration:**\n- For more details on the impact of tariffs on Apple's manufacturing strategy, refer to this article: ([axios.com](https://www.axios.com/2025/04/03/trump-tariffs-apple-iphone?utm_source=openai))\n- To understand Lutnick's vision for America's manufacturing future, see: ([axios.com](https://www.axios.com/2025/04/03/tech-jobs-robots-lutnick-manufacturing-renaissance?utm_source=openai)) ",
+        "request_id": 47,
+        "raw_data": {
+            "id": "chatcmpl-fb9c9c70-2486-4d8f-a560-19b25d36f0b3",
+            "choices": [
+                {
+                    "finish_reason": "stop",
+                    "index": 0,
+                    "message": {
+                        "content": "**Summary of the Post:**\nCommerce Secretary Howard Lutnick stated that the large-scale assembly of products like iPhones, traditionally done overseas, is expected to shift to the United States. He emphasized that millions of workers involved in such manufacturing processes would soon be employed domestically.\n\n**Relevance or Context:**\nLutnick's statement aligns with the Trump administration's recent trade policies aimed at revitalizing American manufacturing. The administration has imposed tariffs on imports, including steel and aluminum, to encourage domestic production. Lutnick has also advocated for using robotics and technology to enhance efficiency in U.S. manufacturing, suggesting a vision of a \"manufacturing renaissance\" driven by advanced technologies. ([axios.com](https://www.axios.com/2025/04/03/tech-jobs-robots-lutnick-manufacturing-renaissance?utm_source=openai))\n\n**Further Exploration:**\n- For more details on the impact of tariffs on Apple's manufacturing strategy, refer to this article: ([axios.com](https://www.axios.com/2025/04/03/trump-tariffs-apple-iphone?utm_source=openai))\n- To understand Lutnick's vision for America's manufacturing future, see: ([axios.com](https://www.axios.com/2025/04/03/tech-jobs-robots-lutnick-manufacturing-renaissance?utm_source=openai)) ",
+                        "refusal": null,
+                        "role": "assistant",
+                        "annotations": [
+                            {
+                                "type": "url_citation",
+                                "url_citation": {
+                                    "end_index": 888,
+                                    "start_index": 772,
+                                    "title": "Tech jobs, robots are Lutnick's vision for America's \"manufacturing renaissance\"",
+                                    "url": "https://www.axios.com/2025/04/03/tech-jobs-robots-lutnick-manufacturing-renaissance?utm_source=openai"
+                                }
+                            },
+                            {
+                                "type": "url_citation",
+                                "url_citation": {
+                                    "end_index": 1109,
+                                    "start_index": 1017,
+                                    "title": "Trump tariffs shake foundations of Apple's iPhone empire",
+                                    "url": "https://www.axios.com/2025/04/03/trump-tariffs-apple-iphone?utm_source=openai"
+                                }
+                            },
+                            {
+                                "type": "url_citation",
+                                "url_citation": {
+                                    "end_index": 1300,
+                                    "start_index": 1184,
+                                    "title": "Tech jobs, robots are Lutnick's vision for America's \"manufacturing renaissance\"",
+                                    "url": "https://www.axios.com/2025/04/03/tech-jobs-robots-lutnick-manufacturing-renaissance?utm_source=openai"
+                                }
+                            }
+                        ]
+                    }
+                }
+            ],
+            "created": 1744057626,
+            "model": "gpt-4o-search-preview-2025-03-11",
+            "object": "chat.completion",
+            "system_fingerprint": "",
+            "usage": {
+                "completion_tokens": 282,
+                "prompt_tokens": 269,
+                "total_tokens": 551,
+                "completion_tokens_details": {
+                    "accepted_prediction_tokens": 0,
+                    "audio_tokens": 0,
+                    "reasoning_tokens": 0,
+                    "rejected_prediction_tokens": 0
+                },
+                "prompt_tokens_details": {
+                    "audio_tokens": 0,
+                    "cached_tokens": 0
+                }
+            }
+        },
+        "credits_remaining": 968
+}
+
+
+
+const SONAR_RESPONSE = {
+    "response": "It appears there is no specific post provided for analysis. However, I can discuss CEO Heather Pringle and the topics of panel discussions and one-on-one talks in a general context.\n\n## Summary of Heather Pringle and Relevant Topics:\n- **Heather Pringle** is a notable individual, specifically Maj. Gen. Heather L. Pringle, USAF (Ret.), who serves as the CEO of the Space Foundation. She leads the organization in advocating for the global space ecosystem, focusing on education, collaboration, and innovation[1][5].\n- **Panel Discussions:** Maj. Gen. Heather Pringle has participated in panel discussions, such as moderating a future of propulsion panel at the Air, Space and Cyber Conference in 2022[2].\n- **One-on-One Talks:** Although there is no specific mention of Heather Pringle's involvement in one-on-one talks, such meetings are generally used for growth, feedback, and addressing challenges in professional settings[3][7].\n\n## Relevance or Context:\nHeather Pringle's leadership roles and panel participation highlight her expertise in science and technology, particularly in space exploration and military research. Her involvement in discussions and meetings reflects her role in advancing collaboration and innovation within these sectors.\n\n## Further Exploration:\nFor more information on Heather Pringle's work or one-on-one meetings, consider exploring these sources:\n- **Space Foundation's Work:** Visit the [Space Foundation website](https://www.spacefoundation.org/) to learn more about Heather Pringle's initiatives and the organization's mission[1][9].\n- **Effective One-on-One Meetings:** The [Spinach AI guide](https://www.spinach.ai/one-on-one-meeting-guide) provides insights on optimizing one-on-one conversations in professional settings[3].",
+    "request_id": 41,
+    "raw_data": {
+        "id": "b9c36edd-42fd-4a67-94d2-828d2be962b4",
+        "choices": [
+            {
+                "finish_reason": "stop",
+                "index": 0,
+                "message": {
+                    "content": "It appears there is no specific post provided for analysis. However, I can discuss CEO Heather Pringle and the topics of panel discussions and one-on-one talks in a general context.\n\n## Summary of Heather Pringle and Relevant Topics:\n- **Heather Pringle** is a notable individual, specifically Maj. Gen. Heather L. Pringle, USAF (Ret.), who serves as the CEO of the Space Foundation. She leads the organization in advocating for the global space ecosystem, focusing on education, collaboration, and innovation[1][5].\n- **Panel Discussions:** Maj. Gen. Heather Pringle has participated in panel discussions, such as moderating a future of propulsion panel at the Air, Space and Cyber Conference in 2022[2].\n- **One-on-One Talks:** Although there is no specific mention of Heather Pringle's involvement in one-on-one talks, such meetings are generally used for growth, feedback, and addressing challenges in professional settings[3][7].\n\n## Relevance or Context:\nHeather Pringle's leadership roles and panel participation highlight her expertise in science and technology, particularly in space exploration and military research. Her involvement in discussions and meetings reflects her role in advancing collaboration and innovation within these sectors.\n\n## Further Exploration:\nFor more information on Heather Pringle's work or one-on-one meetings, consider exploring these sources:\n- **Space Foundation's Work:** Visit the [Space Foundation website](https://www.spacefoundation.org/) to learn more about Heather Pringle's initiatives and the organization's mission[1][9].\n- **Effective One-on-One Meetings:** The [Spinach AI guide](https://www.spinach.ai/one-on-one-meeting-guide) provides insights on optimizing one-on-one conversations in professional settings[3].",
+                    "role": "assistant"
+                },
+                "delta": {
+                    "role": "assistant",
+                    "content": ""
+                }
+            }
+        ],
+        "created": 1744051534,
+        "model": "sonar",
+        "object": "chat.completion",
+        "usage": {
+            "completion_tokens": 354,
+            "prompt_tokens": 258,
+            "total_tokens": 612,
+            "search_context_size": "high"
+        },
+        "citations": [
+            "https://www.spacefoundation.org/people/heather-pringle/",
+            "https://afresearchlab.com/news/afrl-commander-moderates-future-of-propulsion-panel-at-afa-air-space-cyber-conference/",
+            "https://www.spinach.ai/one-on-one-meeting-guide",
+            "https://www.youtube.com/watch?v=WihyUYviTng",
+            "https://www.spacesymposium.org/speaker/maj-gen-heather-l-pringle-usaf-ret/",
+            "https://www.longblueleadership.org/e/maj-gen-ret-heather-pringle-an-officer-and-a-mother/",
+            "https://fellow.app/blog/one-on-ones/one-on-one-with-senior-leadership-tips-for-a-good-meeting/",
+            "https://www.spacesymposium.org/extended-print-agenda/",
+            "https://www.spacefoundation.org/2023/04/05/heather-pringle-new-chief-executive-officer/",
+            "https://heatherpringle.com/video-talks/"
+        ]
+    },
+    "credits_remaining": 974
+};
+
 const contextEndPoint ="https://contextx-api.devicion.com/api/contextx/analyze";
 const apiKey = "";
 
@@ -37,7 +151,7 @@ async function sendPrompt(prompt, apiKey) {
 
         const data = await response.json();
         console.log(data);
-        return data.response;
+        return data;
     } catch (error) {
         console.error("Error:", error.message);
     }
@@ -129,8 +243,44 @@ function url_domain(data) {
     return a.hostname;
   }
 
-function formatResponseText(text) {
-    // Split sections by headings ending with colon
+
+  function formatResponse(ApiResponse) {
+    const customRenderer = {
+        heading({ tokens, depth }) {
+            const text = this.parser.parseInline(tokens);
+
+            return `
+                <h${depth} class="ct-heading">
+                    ${text}
+                </h${depth}>`;
+        },
+
+        paragraph({ tokens }) {
+            const text = this.parser.parseInline(tokens);
+
+            return `
+                <p class="ct-paragraph">
+                    ${text}
+                </p>`;
+        },
+
+    };
+
+    const markdownText = ApiResponse.response;
+    marked.use({ renderer: customRenderer });
+    const htmlOutput = marked.parse(markdownText);
+
+    return htmlOutput;
+
+}
+
+
+function formatResponseText(payload) {
+    let text = payload.response;
+
+    // Remove any dual ** snippets
+    text = text.replace(/\*\*([^*]*)\*\*/g, '$1');
+    console.log(text);
     const sections = text.split(/(Summary of the Post:|Relevance or Context:|Further Exploration:)/gi);
 
     let formatted = '';
@@ -146,8 +296,7 @@ function formatResponseText(text) {
             formatted += `<p>${sections[i].replace(/\n/g, ' <br/>')} </p>`;
         }
     }
-    // Replace any string that start with http:// or https:// with a link
-    formatted = formatted.replace(/(http|https):\/\/[^\s]+/g, (match) => `</br><a class="ct-link" href="${match}" target="_blank">${url_domain(match)}</a></br>`);
+    formatted = formatted.replace(/\[([^\]]+)\]\((https?:\/\/[^\)]+)\)/g, '<a class="ct-link" href="$2" target="_blank">$1</a>');
 
     return formatted;
 }
@@ -156,7 +305,8 @@ function formatResponseText(text) {
 function handleContextButtonClick(text, button) {
     getApiKey((key) => {
         (async () => {
-            // const contextResponse = "Summary of the Post:\nThe post discusses a court ruling related to a restraining order against the Trump administration's actions targeting the law firm Perkins Coie. Specifically, the order prevents the administration from barring employees of the firm from accessing government buildings, but it does not restrict security clearance reviews called for in Trump's order.\n\nRelevance or Context:\nThis appears to be related to ongoing tensions and legal battles between the Trump administration and Perkins Coie, a law firm that represented the Democratic National Committee and Hillary Clinton's 2016 presidential campaign. The firm's opposition research played a role in the Russia investigation, which has been a contentious issue during Trump's presidency.\n\nFurther Exploration:\n- An article from Reuters provides more details on the restraining order and the judge's ruling: https://www.reuters.com/article/us-usa-trump-perkins-coie/u-s-judge-blocks-portions-of-trumps-ban-on-perkins-coie-law-firm-idUSKBN27Q34X\n- For background on the broader context, this report from the Congressional Research Service outlines the Russia investigation and related controversies: https://crsreports.congress.gov/product/pdf/R/R45487";
+            // const contextResponse = SONAR_RESPONSE;
+            // const contextResponse = OPEN_AI_RESPONSE;
             const contextResponse = await sendPrompt(text, key);
 
             // Get button position relative to the document
@@ -185,13 +335,24 @@ function handleContextButtonClick(text, button) {
                 document.body.appendChild(responseDiv);
             }
 
+            console.log(contextResponse);
+
+
+            let formatedHTML = '';
+            if (contextResponse.raw_data.model.toLowerCase().slice(0, 3) === 'gpt') {
+                formatedHTML = formatResponseText(contextResponse);
+            }
+            else if (contextResponse.raw_data.model.toLowerCase().slice(0, 3) === 'son') {
+                formatedHTML = formatResponse(contextResponse);
+            }
+
             // Add content wrapper div to prevent close button overlap
             responseDiv.innerHTML = `
             <div style="padding-right: 20px;">
             <style>
             @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
             </style>
-            ${formatResponseText(contextResponse)}
+            ${formatedHTML}
             </div>
             `;
             responseDiv.prepend(ct_heading("Context"));

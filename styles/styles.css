@@ -91,7 +91,7 @@
   cursor: pointer;
 }
 
-.ct-list {
+.ct-list, .ct-response ul {
   font-family: "Space Mono", sans-serif;
   font-size: 16px;
   line-height: 150%;
@@ -128,6 +128,7 @@
 }
 .ct-message--show {
   display: block;
+  -webkit-animation: fadeIn 0.3s;
   animation: fadeIn 0.3s;
 }
 
@@ -157,5 +158,7 @@
   scrollbar-color: auto;
   scrollbar-width: none;
   overflow: scroll;
+  -webkit-box-shadow: 20px 20px 0px 0px rgb(217, 217, 217);
+  -moz-box-shadow: 20px 20px 0px 0px rgb(217, 217, 217);
   box-shadow: 20px 20px 0px 0px rgb(217, 217, 217);
 }

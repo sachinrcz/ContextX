@@ -26,7 +26,7 @@
     "content_scripts": [
       {
         "matches": ["*://*.x.com/*", "*://*.twitter.com/*"],
-        "js": ["js/content.js"],
+        "js": ["js/content.js", "js/vendor/marked.min.js"],
         "css": [ "styles/styles.css" ]
       }
     ]
