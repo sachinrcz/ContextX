@@ -1,0 +1,19 @@
+.ct-response {
+    position: absolute;
+    width: 410px;
+    height: 820px;
+    // overflow-y: auto;
+    background-color: white;
+    padding: 34px 20px;
+    margin-right: 20px;
+    border-radius: 15px;
+    z-index: 1000;
+    font-size: 14px;
+    line-height: 1.5;
+    scrollbar-color: auto;
+    scrollbar-width: none;
+    overflow:scroll;
+    -webkit-box-shadow: 20px 20px 0px 0px rgba(217,217,217,1);
+    -moz-box-shadow: 20px 20px 0px 0px rgba(217,217,217,1);
+    box-shadow: 20px 20px 0px 0px rgba(217,217,217,1);
+}
