@@ -150,7 +150,7 @@ async function sendPrompt(prompt, apiKey) {
         }
 
         const data = await response.json();
-        console.log(data);
+        // console.log(data);
         return data;
     } catch (error) {
         console.error("Error:", error.message);
@@ -280,7 +280,6 @@ function formatResponseText(payload) {
 
     // Remove any dual ** snippets
     text = text.replace(/\*\*([^*]*)\*\*/g, '$1');
-    console.log(text);
     const sections = text.split(/(Summary of the Post:|Relevance or Context:|Further Exploration:)/gi);
 
     let formatted = '';
@@ -313,7 +312,6 @@ function handleContextButtonClick(text, button) {
             const buttonRect = button.getBoundingClientRect();
             const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
             const buttonTop = buttonRect.top + scrollTop;
-            console.log(buttonRect);
             const buttonRight = window.innerWidth - buttonRect.right;
 
             // Create or update response container
@@ -334,9 +332,6 @@ function handleContextButtonClick(text, button) {
                 responseDiv.appendChild(createCloseButton(responseDiv));
                 document.body.appendChild(responseDiv);
             }
-
-            console.log(contextResponse);
-
 
             let formatedHTML = '';
             if (contextResponse.raw_data.model.toLowerCase().slice(0, 3) === 'gpt') {
@@ -365,7 +360,6 @@ function handleContextButtonClick(text, button) {
 
 // Process the page on load
 function initializeContextButtons() {
-    console.log("Initialize buttons starting");
     // Select all major content elements
     const elements = document.body.querySelectorAll('p, div, span, article, section');
 
@@ -401,7 +395,6 @@ function initializeContextButtons() {
 // Replace the MutationObserver code with this new implementation
 function initializeWithRetry() {
     // Initial processing
-    console.log("Initialize with retry starting");
     initializeContextButtons();
 
     let attempts = 0;
@@ -445,6 +438,6 @@ if (document.readyState === 'loading') {
     // If DOMContentLoaded has already fired, run immediately
     initializeWithRetry();
 }
-console.log("Script loaded!");
+
 // Remove the existing MutationObserver code
 // Delete or comment out the previous window.contextButtonObserver code
