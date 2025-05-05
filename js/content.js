@@ -1,3 +1,65 @@
+const GPT_RESPONSE = {
+
+        "response": "Recent developments in the music industry have highlighted challenges faced by major artists like Katy Perry and Beyoncé concerning concert ticket sales and performance reception.\n\n**Katy Perry's 'Lifetimes' Tour:**\n\nKaty Perry's 'Lifetimes' Tour, supporting her seventh studio album '143', has encountered sluggish ticket sales in several U.S. cities. Reports indicate that venues such as the Target Center in Minneapolis and Ball Arena in Denver have numerous unsold seats. This downturn is partly attributed to Perry's collaboration with producer Dr. Luke, who faced sexual misconduct allegations from singer Kesha in 2014. Despite the controversy, Perry continued to work with him, leading to fan disappointment and criticism. \n\n**Beyoncé's 'Cowboy Carter' Tour:**\n\nIn contrast, Beyoncé's 'Cowboy Carter' stadium tour, which commenced on April 28, 2025, at SoFi Stadium in Los Angeles, has been well-received. The tour celebrates her Grammy-winning album 'Cowboy Carter' and features elaborate performances, including country-inspired songs and appearances by her daughters. The opening show was described as dynamic and engaging, with Beyoncé expressing gratitude to her fans for their support. \n\n**Industry Context:**\n\nThe live music industry is experiencing a resurgence post-pandemic, with companies like Live Nation reporting a strong outlook for the summer concert season. Despite broader economic concerns, there is a surge in ticket demand, driven by both major and smaller music acts. Stadium shows have increased by 60% compared to the previous year. However, challenges remain, including scrutiny over high ticket prices and access issues, especially for tours by top artists. \n\n**Further Exploration:**\n\n- For more details on Beyoncé's 'Cowboy Carter' tour kickoff, refer to the Reuters article: ([reuters.com](https://www.reuters.com/lifestyle/beyonce-delivers-rousing-kickoff-her-cowboy-carter-tour-2025-04-29/?utm_source=openai))\n\n- For insights into the live music industry's current trends and challenges, see the Axios report: ([axios.com](https://www.axios.com/2025/05/04/beyonce-kendrick-lamar-live-nation-concerts?utm_source=openai))\n\nThese developments underscore the complexities artists face in balancing creative decisions, public perception, and market dynamics in the evolving music industry landscape. ",
+        "request_id": 73,
+        "raw_data": {
+            "id": "chatcmpl-88626e6e-672d-4fc3-913e-f3cea8fc5a81",
+            "choices": [
+                {
+                    "finish_reason": "stop",
+                    "index": 0,
+                    "message": {
+                        "content": "Recent developments in the music industry have highlighted challenges faced by major artists like Katy Perry and Beyoncé concerning concert ticket sales and performance reception.\n\n**Katy Perry's 'Lifetimes' Tour:**\n\nKaty Perry's 'Lifetimes' Tour, supporting her seventh studio album '143', has encountered sluggish ticket sales in several U.S. cities. Reports indicate that venues such as the Target Center in Minneapolis and Ball Arena in Denver have numerous unsold seats. This downturn is partly attributed to Perry's collaboration with producer Dr. Luke, who faced sexual misconduct allegations from singer Kesha in 2014. Despite the controversy, Perry continued to work with him, leading to fan disappointment and criticism. \n\n**Beyoncé's 'Cowboy Carter' Tour:**\n\nIn contrast, Beyoncé's 'Cowboy Carter' stadium tour, which commenced on April 28, 2025, at SoFi Stadium in Los Angeles, has been well-received. The tour celebrates her Grammy-winning album 'Cowboy Carter' and features elaborate performances, including country-inspired songs and appearances by her daughters. The opening show was described as dynamic and engaging, with Beyoncé expressing gratitude to her fans for their support. \n\n**Industry Context:**\n\nThe live music industry is experiencing a resurgence post-pandemic, with companies like Live Nation reporting a strong outlook for the summer concert season. Despite broader economic concerns, there is a surge in ticket demand, driven by both major and smaller music acts. Stadium shows have increased by 60% compared to the previous year. However, challenges remain, including scrutiny over high ticket prices and access issues, especially for tours by top artists. \n\n**Further Exploration:**\n\n- For more details on Beyoncé's 'Cowboy Carter' tour kickoff, refer to the Reuters article: ([reuters.com](https://www.reuters.com/lifestyle/beyonce-delivers-rousing-kickoff-her-cowboy-carter-tour-2025-04-29/?utm_source=openai))\n\n- For insights into the live music industry's current trends and challenges, see the Axios report: ([axios.com](https://www.axios.com/2025/05/04/beyonce-kendrick-lamar-live-nation-concerts?utm_source=openai))\n\nThese developments underscore the complexities artists face in balancing creative decisions, public perception, and market dynamics in the evolving music industry landscape. ",
+                        "refusal": null,
+                        "role": "assistant",
+                        "annotations": [
+                            {
+                                "type": "url_citation",
+                                "url_citation": {
+                                    "end_index": 1948,
+                                    "start_index": 1812,
+                                    "title": "Beyonce delivers a rousing kickoff to her 'Cowboy Carter' tour",
+                                    "url": "https://www.reuters.com/lifestyle/beyonce-delivers-rousing-kickoff-her-cowboy-carter-tour-2025-04-29/?utm_source=openai"
+                                }
+                            },
+                            {
+                                "type": "url_citation",
+                                "url_citation": {
+                                    "end_index": 2158,
+                                    "start_index": 2049,
+                                    "title": "Live Nation says it's poised for a summer concert boom",
+                                    "url": "https://www.axios.com/2025/05/04/beyonce-kendrick-lamar-live-nation-concerts?utm_source=openai"
+                                }
+                            }
+                        ]
+                    }
+                }
+            ],
+            "created": 1746448079,
+            "model": "gpt-4o-search-preview-2025-03-11",
+            "object": "chat.completion",
+            "system_fingerprint": "",
+            "usage": {
+                "completion_tokens": 482,
+                "prompt_tokens": 272,
+                "total_tokens": 754,
+                "completion_tokens_details": {
+                    "accepted_prediction_tokens": 0,
+                    "audio_tokens": 0,
+                    "reasoning_tokens": 0,
+                    "rejected_prediction_tokens": 0
+                },
+                "prompt_tokens_details": {
+                    "audio_tokens": 0,
+                    "cached_tokens": 0
+                }
+            }
+        },
+        "credits_remaining": 961
+
+}
+
+
 const OPEN_AI_RESPONSE = {
         "response": "**Summary of the Post:**\nCommerce Secretary Howard Lutnick stated that the large-scale assembly of products like iPhones, traditionally done overseas, is expected to shift to the United States. He emphasized that millions of workers involved in such manufacturing processes would soon be employed domestically.\n\n**Relevance or Context:**\nLutnick's statement aligns with the Trump administration's recent trade policies aimed at revitalizing American manufacturing. The administration has imposed tariffs on imports, including steel and aluminum, to encourage domestic production. Lutnick has also advocated for using robotics and technology to enhance efficiency in U.S. manufacturing, suggesting a vision of a \"manufacturing renaissance\" driven by advanced technologies. ([axios.com](https://www.axios.com/2025/04/03/tech-jobs-robots-lutnick-manufacturing-renaissance?utm_source=openai))\n\n**Further Exploration:**\n- For more details on the impact of tariffs on Apple's manufacturing strategy, refer to this article: ([axios.com](https://www.axios.com/2025/04/03/trump-tariffs-apple-iphone?utm_source=openai))\n- To understand Lutnick's vision for America's manufacturing future, see: ([axios.com](https://www.axios.com/2025/04/03/tech-jobs-robots-lutnick-manufacturing-renaissance?utm_source=openai)) ",
         "request_id": 47,
@@ -130,6 +192,15 @@ function ct_heading(text) {
     return heading;
 }
 
+function ct_icon(iconName) {
+    const icon = document.createElement('span');
+    icon.classList.add('ct-icon');
+    const img = document.createElement('img');
+    img.src = chrome.runtime.getURL('/styles/icons/' + iconName +'.svg');
+    icon.appendChild(img);
+    return icon;
+}
+
 
 async function sendPrompt(prompt, apiKey) {
     try {
@@ -195,20 +266,10 @@ function getCleanTextContent(element) {
 // Create and style the context button
 function createContextButton() {
     const button = document.createElement('button');
-    button.textContent = 'C';
+    button.classList.add('ct-context-button');
+
+    button.appendChild(ct_icon("context"));
     button.dataset.contextButton = 'true';
-    button.style.cssText = `
-        position: absolute;
-        right: 0px;
-        top: 0px;
-        background-color: red;
-        color: white;
-        border: none;
-        padding: 2px 4px;
-        border-radius: 50%;
-        cursor: pointer;
-        font-size: 12px;
-    `;
     return button;
 }
 
@@ -304,15 +365,14 @@ function formatResponseText(payload) {
 function handleContextButtonClick(text, button) {
     getApiKey((key) => {
         (async () => {
-            // const contextResponse = SONAR_RESPONSE;
-            // const contextResponse = OPEN_AI_RESPONSE;
-            const contextResponse = await sendPrompt(text, key);
+
 
             // Get button position relative to the document
             const buttonRect = button.getBoundingClientRect();
             const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
             const buttonTop = buttonRect.top + scrollTop;
-            const buttonRight = window.innerWidth - buttonRect.right;
+            // const buttonRight = window.innerWidth - buttonRect.right;
+            const buttonLeft = buttonRect.left;
 
             // Create or update response container
             let responseDiv = document.querySelector(`[data-response-for="${button.dataset.uniqueId}"]`);
@@ -325,35 +385,53 @@ function handleContextButtonClick(text, button) {
                 responseDiv.dataset.responseFor = uniqueId;
 
                 responseDiv.style.cssText = `
-                    right: ${buttonRight}px;
+                    left: ${buttonLeft}px;
                     top: ${buttonTop + buttonRect.height + 5}px;
                 `;
-
-                responseDiv.appendChild(createCloseButton(responseDiv));
                 document.body.appendChild(responseDiv);
             }
-
-            let formatedHTML = '';
-            if (contextResponse.raw_data.model.toLowerCase().slice(0, 3) === 'gpt') {
-                formatedHTML = formatResponseText(contextResponse);
-            }
-            else if (contextResponse.raw_data.model.toLowerCase().slice(0, 3) === 'son') {
-                formatedHTML = formatResponse(contextResponse);
-            }
-
-            // Add content wrapper div to prevent close button overlap
+            responseDiv.appendChild(createCloseButton(responseDiv));
             responseDiv.innerHTML = `
             <div style="padding-right: 20px;">
-            <style>
-            @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
-            </style>
-            ${formatedHTML}
+                <style>
+                    @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+                </style>
+                <p class="ct-paragraph">Loading...</p>
             </div>
             `;
             responseDiv.prepend(ct_heading("Context"));
-
-            // Re-append close button
             responseDiv.appendChild(createCloseButton(responseDiv));
+
+            // const contextResponse = SONAR_RESPONSE;
+            // const contextResponse = OPEN_AI_RESPONSE;
+            //  const contextResponse = GPT_RESPONSE;
+            const contextResponse = await sendPrompt(text, key);
+
+            setTimeout(() =>{
+
+
+                let formatedHTML = '';
+                if (contextResponse.raw_data.model.toLowerCase().slice(0, 3) === 'gpt') {
+                    formatedHTML = formatResponseText(contextResponse);
+                }
+                else if (contextResponse.raw_data.model.toLowerCase().slice(0, 3) === 'son') {
+                    formatedHTML = formatResponse(contextResponse);
+                }
+
+                // Add content wrapper div to prevent close button overlap
+                responseDiv.innerHTML = `
+                <div style="padding-right: 20px;">
+                    <style>
+                        @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+                    </style>
+                    ${formatedHTML}
+                </div>
+                `;
+                responseDiv.prepend(ct_heading("Context"));
+                responseDiv.appendChild(createCloseButton(responseDiv));
+
+            }, 2000);
+
         })();
     });
 }

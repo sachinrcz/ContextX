@@ -28,4 +28,10 @@
         min-width: 32px;
         height: 32px;
     }
+
+    &--icon {
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+    }
 }
