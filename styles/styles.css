@@ -56,6 +56,18 @@
   min-width: 32px;
   height: 32px;
 }
+.ct-button--icon {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+.ct-context-button {
+  position: absolute;
+  left: -24px;
+  top: 0px;
+  border: none;
+}
 
 .ct-heading {
   font-family: "Poppins", sans-serif;
@@ -68,6 +80,21 @@
 .ct-heading--secondary {
   font-family: "Space Mono", sans-serif;
   font-size: 18px;
+}
+
+.ct-icon {
+  width: 18px;
+  max-height: 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.ct-icon img {
+  width: 100%;
+  height: 100%;
+  max-width: 18px;
+  max-height: 18px;
 }
 
 .ct-input {
